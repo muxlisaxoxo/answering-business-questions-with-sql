@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>chinookdb</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>chinookdb-Copy1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14754,7 +14754,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using joins to connect &#39;track&#39; table, &#39;genre&#39; table, </span>
+<span class="c1"># and a subquery of the &#39;invoice&#39; and &#39;invoice_line&#39; tables.</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">SELECT g.name genre, </span>
 <span class="s1">       SUM(ts.quantity) AS &quot;number of tracks sold&quot;</span>
 <span class="s1">FROM track tr</span>
@@ -14906,7 +14909,8 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#understanding how the &#39;employee&#39; table is structured</span>
+<span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">SELECT employee_id, title, first_name, last_name, hire_date</span>
 <span class="s1">FROM employee</span>
 <span class="s1">&#39;&#39;&#39;</span>
@@ -14949,60 +14953,16 @@ class="
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">SELECT COUNT(customer_id)</span>
-<span class="s1">FROM customer</span>
-<span class="s1">WHERE support_rep_id = &#39;1&#39;</span>
-<span class="s1">&#39;&#39;&#39;</span>
-
-<span class="n">employees</span> <span class="o">=</span> <span class="n">run_query</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">employees</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>   COUNT(customer_id)
-0                   0
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># using joins  between &#39;employee&#39;, &#39;customer&#39;, and &#39;invoice&#39; tables</span>
+<span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">SELECT (em.title || &#39; &#39; || em.first_name || &#39; &#39; || em.last_name) </span>
 <span class="s1">       AS &#39;employee name&#39;, SUM(i.total) AS &quot;total sales&quot;,</span>
 <span class="s1">       em.hire_date</span>
@@ -15143,151 +15103,10 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="We-will-be-looking-for-each-country:-total-number-of-customers,-total-value-of-sales,-average-value-of-sales-per-customer,-and-average-order-value.">We will be looking for each country: total number of customers, total value of sales, average value of sales per customer, and average order value.<a class="anchor-link" href="#We-will-be-looking-for-each-country:-total-number-of-customers,-total-value-of-sales,-average-value-of-sales-per-customer,-and-average-order-value.">&#182;</a></h4>
+<h4 id="For-each-country,-look-for-total-number-of-customers,-total-value-of-sales,-average-value-of-sales-per-customer,-and-average-order-value.">For each country, look for total number of customers, total value of sales, average value of sales per customer, and average order value.<a class="anchor-link" href="#For-each-country,-look-for-total-number-of-customers,-total-value-of-sales,-average-value-of-sales-per-customer,-and-average-order-value.">&#182;</a></h4>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;SELECT COUNT(*) AS &#39;num customer&#39;,</span>
-<span class="s1">       COUNT(DISTINCT country) AS &#39;num country&#39;</span>
-<span class="s1">FROM customer</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="n">run_query</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>num customer</th>
-      <th>num country</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>59</td>
-      <td>24</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39; SELECT COUNT(invoice_id)</span>
-<span class="s1">        FROM invoice</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="n">run_query</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>COUNT(invoice_id)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>614</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15567,158 +15386,10 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>I was supposed to insert conclusion to part 3 here but the reason that there is no conclusion is bcuz i can't figure out how to do the last part which is put all the countries who have '1' in the other category</p>
-
+<h4 id="Creating-a-row-called-'Other'-to-merge-all-the-stats-of-the-countries-who-have-only-1-customer.">Creating a row called 'Other' to merge all the stats of the countries who have only 1 customer.<a class="anchor-link" href="#Creating-a-row-called-'Other'-to-merge-all-the-stats-of-the-countries-who-have-only-1-customer.">&#182;</a></h4>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[68]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## creating the &#39;Other&#39; row</span>
-
-<span class="n">d</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">SELECT country, </span>
-<span class="s1"> COUNT(customer_id) AS &#39;num_customers&#39; </span>
-<span class="s1">FROM customer</span>
-<span class="s1">GROUP BY 1</span>
-<span class="s1">HAVING  COUNT(customer_id) = 1</span>
-<span class="s1">&#39;&#39;&#39;</span>
-<span class="n">run_query</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[68]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>country</th>
-      <th>num_customers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Argentina</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Australia</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Austria</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Belgium</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Chile</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Denmark</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Finland</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Hungary</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Ireland</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Italy</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Netherlands</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Norway</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Poland</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Spain</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Sweden</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15816,7 +15487,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## integrating .. ?</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## integrating .. </span>
 
 <span class="n">d</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">WITH num_customers_2 </span>
@@ -16080,7 +15751,7 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## so i&#39;m gonna try to integrate the above code in to the whole thing basically yay me</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##integrate the above code in to the original code</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">WITH num_customers_1 AS</span>
@@ -16258,8 +15929,8 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="this-is-my-official-conclusion-to-3-finally!!">this is my official conclusion to 3 finally!!<a class="anchor-link" href="#this-is-my-official-conclusion-to-3-finally!!">&#182;</a></h3><h4 id="just-finished-making-the-plots,-they-are-so-beautiful">just finished making the plots, they are so beautiful<a class="anchor-link" href="#just-finished-making-the-plots,-they-are-so-beautiful">&#182;</a></h4><h4 id="USA-is-in-first-place-for-total-sales-and-it's-probably-because-they-have-the-most-customers.">USA is in first place for total sales and it's probably because they have the most customers.<a class="anchor-link" href="#USA-is-in-first-place-for-total-sales-and-it's-probably-because-they-have-the-most-customers.">&#182;</a></h4><p>Interestingly, Canada has two-thirds the amount of customers as the USA but it's total sales is half of the USA's, mostly because average sales per customer is pretty low for Canada.</p>
-<p>You might have noticed that the total sales and number of customers chart is pretty similar, that is because having more customers increases your total sales. Furthermore, the average order value and average sales per customer is pretty similar and there isn't much competition between the countries in these two areas, mostly likely because the average consumer buys pretty much the same amount as everybody else.</p>
+<h4 id="USA-is-in-first-place-for-total-sales,-most-likely-because-they-have-the-most-customers.">USA is in first place for total sales, most likely because they have the most customers.<a class="anchor-link" href="#USA-is-in-first-place-for-total-sales,-most-likely-because-they-have-the-most-customers.">&#182;</a></h4><p>Interestingly, Canada has two-thirds the amount of customers as the USA but it's total sales is half of the USA's, mostly because average sales per customer is pretty low for Canada.</p>
+<p>The total sales and number of customers chart is pretty similar, because having more customers increases the total sales. Furthermore, the average order value and average sales per customer is pretty similar and there isn't much competition between the countries in these two areas, mostly likely because the average consumer buys pretty much the same amount as everybody else.</p>
 
 </div>
 </div>
@@ -16282,710 +15953,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="The-Chinook-store-allows-the-customer-to-either-purchase-a-whole-album-or-purchase-a-collection-of-one-or-more-individual-tracks.">The Chinook store allows the customer to either purchase a whole album or purchase a collection of one or more individual tracks.<a class="anchor-link" href="#The-Chinook-store-allows-the-customer-to-either-purchase-a-whole-album-or-purchase-a-collection-of-one-or-more-individual-tracks.">&#182;</a></h4><h4 id="We-want-to-find-out-which-type-of-purchase-is-used-more-often.">We want to find out which type of purchase is used more often.<a class="anchor-link" href="#We-want-to-find-out-which-type-of-purchase-is-used-more-often.">&#182;</a></h4>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># first, what we need is the track_ids for each invoice </span>
-<span class="c1"># so we know which tracks were on each order</span>
-
-<span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;SELECT invoice_id, track_id FROM invoice_line</span>
-<span class="s1">             GROUP BY invoice_id</span>
-<span class="s1">             LIMIT 10&#39;&#39;&#39;</span><span class="p">)</span>
-
-<span class="c1"># this code chooses the last track from each invoice,</span>
-<span class="c1"># which is fine, because we can use any track for step 2</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>invoice_id</th>
-      <th>track_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>1173</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>2651</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>2646</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>2514</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>2002</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>6</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>7</td>
-      <td>42</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>8</td>
-      <td>1560</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>9</td>
-      <td>196</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>10</td>
-      <td>3290</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># then, we need the album_id for one of the tracks from each  </span>
-<span class="c1"># order, doesn&#39;t matter which track</span>
-
-<span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">SELECT il.track_id as tr, t.album_id, il.invoice_id </span>
-<span class="s1">FROM track t</span>
-<span class="s1">INNER JOIN invoice_line il ON il.track_id = t.track_id</span>
-<span class="s1">WHERE tr = (SELECT track_id FROM invoice_line</span>
-<span class="s1">                 GROUP BY invoice_id)</span>
-<span class="s1">LIMIT 10</span>
-<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tr</th>
-      <th>album_id</th>
-      <th>invoice_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1173</td>
-      <td>91</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1173</td>
-      <td>91</td>
-      <td>94</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1173</td>
-      <td>91</td>
-      <td>301</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1173</td>
-      <td>91</td>
-      <td>438</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;SELECT * FROM track</span>
-<span class="s1">     WHERE album_id = 163</span>
-<span class="s1">    LIMIT 20&#39;&#39;&#39;</span>
-<span class="n">run_query</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>track_id</th>
-      <th>name</th>
-      <th>album_id</th>
-      <th>media_type_id</th>
-      <th>genre_id</th>
-      <th>composer</th>
-      <th>milliseconds</th>
-      <th>bytes</th>
-      <th>unit_price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1986</td>
-      <td>Intro</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>52218</td>
-      <td>1688527</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1987</td>
-      <td>School</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>160235</td>
-      <td>5234885</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1988</td>
-      <td>Drain You</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>215196</td>
-      <td>7013175</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1989</td>
-      <td>Aneurysm</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Nirvana</td>
-      <td>271516</td>
-      <td>8862545</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1990</td>
-      <td>Smells Like Teen Spirit</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Nirvana</td>
-      <td>287190</td>
-      <td>9425215</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1991</td>
-      <td>Been A Son</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>127555</td>
-      <td>4170369</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>1992</td>
-      <td>Lithium</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>250017</td>
-      <td>8148800</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1993</td>
-      <td>Sliver</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>116218</td>
-      <td>3784567</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1994</td>
-      <td>Spank Thru</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>190354</td>
-      <td>6186487</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1995</td>
-      <td>Scentless Apprentice</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Nirvana</td>
-      <td>211200</td>
-      <td>6898177</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>1996</td>
-      <td>Heart-Shaped Box</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>281887</td>
-      <td>9210982</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>1997</td>
-      <td>Milk It</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>225724</td>
-      <td>7406945</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>1998</td>
-      <td>Negative Creep</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>163761</td>
-      <td>5354854</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>1999</td>
-      <td>Polly</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>149995</td>
-      <td>4885331</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>2000</td>
-      <td>Breed</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>208378</td>
-      <td>6759080</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>2001</td>
-      <td>Tourette's</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>115591</td>
-      <td>3753246</td>
-      <td>0.99</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>2002</td>
-      <td>Blew</td>
-      <td>163</td>
-      <td>1</td>
-      <td>1</td>
-      <td>Kurt Cobain</td>
-      <td>216346</td>
-      <td>7096936</td>
-      <td>0.99</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;SELECT track_id FROM invoice_line</span>
-<span class="s1">     WHERE invoice_id = 11</span>
-<span class="s1"> </span>
-<span class="s1">  &#39;&#39;&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>track_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2597</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2203</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2420</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2643</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3072</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1138</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2391</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2257</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>610</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1419</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>3452</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
-
-<span class="s1">SELECT invoice_id, </span>
-<span class="s1">        CASE WHEN ((SELECT track_id FROM invoice_line</span>
-<span class="s1">                     WHERE invoice_id = 10</span>
-<span class="s1">                    EXCEPT</span>
-<span class="s1">                   SELECT track_id FROM track</span>
-<span class="s1">                     WHERE album_id = 215) IS NULL</span>
-<span class="s1">                     AND</span>
-<span class="s1">                     (SELECT track_id FROM invoice_line</span>
-<span class="s1">                     WHERE invoice_id = 10</span>
-<span class="s1">                    EXCEPT</span>
-<span class="s1">                   SELECT track_id FROM track</span>
-<span class="s1">                     WHERE album_id = 215) IS NULL) </span>
-<span class="s1">             THEN &#39;album&#39;</span>
-<span class="s1">             ELSE &#39;individual tracks&#39;</span>
-<span class="s1">             END AS &#39;type of purchase&#39;</span>
-<span class="s1">  &#39;&#39;&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>track_id</th>
-      <th>name</th>
-      <th>album_id</th>
-      <th>media_type_id</th>
-      <th>genre_id</th>
-      <th>composer</th>
-      <th>milliseconds</th>
-      <th>bytes</th>
-      <th>unit_price</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="I-am-not-sure-what-i-was-even-doing-with-this,-let's-fix-it.">I am not sure what i was even doing with this, let's fix it.<a class="anchor-link" href="#I-am-not-sure-what-i-was-even-doing-with-this,-let's-fix-it.">&#182;</a></h2>
+<h4 id="The-Chinook-store-allows-the-customer-to-either-purchase-a-whole-album-or-purchase-a-collection-of-one-or-more-individual-tracks.">The Chinook store allows the customer to either purchase a whole album or purchase a collection of one or more individual tracks.<a class="anchor-link" href="#The-Chinook-store-allows-the-customer-to-either-purchase-a-whole-album-or-purchase-a-collection-of-one-or-more-individual-tracks.">&#182;</a></h4><h4 id="Which-type-of-purchase-is-used-more-often?-Should-the-'buy-album'-feature-be-removed?">Which type of purchase is used more often? Should the 'buy album' feature be removed?<a class="anchor-link" href="#Which-type-of-purchase-is-used-more-often?-Should-the-'buy-album'-feature-be-removed?">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -16998,6 +15966,7 @@ class="
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">##Let&#39;s look directly at which albums each invoice contains.</span>
+
 <span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">SELECT i.invoice_id, tr.album_id</span>
 <span class="s1">FROM invoice i</span>
@@ -17217,7 +16186,8 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Now, create a query to count number of track in each album</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Now, create a query to count number of track in each album</span>
+
 <span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 
 <span class="s1">SELECT album_id, COUNT(track_id) AS &quot;num tracks in album&quot;</span>
@@ -17344,7 +16314,8 @@ class="
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Count the number of tracks in the invoice.</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Count the number of tracks in the invoice.</span>
+
 <span class="n">run_query</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
 <span class="s1">SELECT i.invoice_id, tr.album_id &quot;first album id&quot;, COUNT(tr.album_id) &quot;num tracks in invoice&quot;</span>
 <span class="s1">FROM invoice i</span>
@@ -17824,7 +16795,6 @@ class="
 
 <span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">val_ct_album</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">val_ct_album</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="n">autopct_format</span><span class="p">(</span><span class="n">val_ct_album</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;How many are album purchases?&quot;</span><span class="p">)</span>
-<span class="c1"># plt.labels(&#39;album purchase&#39;,&#39;not album purchase&#39;)</span>
 </pre></div>
 
      </div>
@@ -17878,7 +16848,7 @@ class="
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Full-album-purchases-make-up-about-20%25-of-all-purchases,-so-I-would-say-it-would-be-wise-to-keep-the-option-to-do-an-album-purchase.-Many-people-probably-find-it-convenient-to-click-on-one-album-instead-of-selecting-tracks.">Full album purchases make up about 20% of all purchases, so I would say it would be wise to keep the option to do an album purchase. Many people probably find it convenient to click on one album instead of selecting tracks.<a class="anchor-link" href="#Full-album-purchases-make-up-about-20%25-of-all-purchases,-so-I-would-say-it-would-be-wise-to-keep-the-option-to-do-an-album-purchase.-Many-people-probably-find-it-convenient-to-click-on-one-album-instead-of-selecting-tracks.">&#182;</a></h3>
+<h3 id="Full-album-purchases-make-up-about-20%25-of-all-purchases,-so-it-would-be-wise-to-keep-the-option-to-do-an-album-purchase.-Many-people-probably-find-it-convenient-to-click-on-one-album-instead-of-selecting-tracks.">Full album purchases make up about 20% of all purchases, so it would be wise to keep the option to do an album purchase. Many people probably find it convenient to click on one album instead of selecting tracks.<a class="anchor-link" href="#Full-album-purchases-make-up-about-20%25-of-all-purchases,-so-it-would-be-wise-to-keep-the-option-to-do-an-album-purchase.-Many-people-probably-find-it-convenient-to-click-on-one-album-instead-of-selecting-tracks.">&#182;</a></h3>
 </div>
 </div>
 </div>
